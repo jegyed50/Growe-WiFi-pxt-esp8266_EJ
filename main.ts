@@ -26,7 +26,7 @@ namespace esp8266 {
      * @param expected_response Wait for this response.
      * @param timeout Timeout in milliseconds.
      */
-    //% blockHidden=true
+    //% blockHidden=false
     //% blockId=esp8266_send_command
     export function sendCommand(command: string, expected_response: string = null, timeout: number = 100): boolean {
         // Wait a while from previous command.
@@ -87,7 +87,7 @@ namespace esp8266 {
      * @param command The specific response we want to get.
      * @param timeout Timeout in milliseconds.
      */
-    //% blockHidden=true
+    //% blockHidden=false
     //% blockId=esp8266_get_response
     export function getResponse(response: string, timeout: number = 100): string {
         let responseLine = ""
@@ -128,7 +128,7 @@ namespace esp8266 {
      * Format the encoding of special characters in the url.
      * @param url The url that we want to format.
      */
-    //% blockHidden=true
+    //% blockHidden=false
     //% blockId=esp8266_format_url
     export function formatUrl(url: string): string {
         url = url.replaceAll("%", "%25")
