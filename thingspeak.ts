@@ -97,4 +97,62 @@ namespace esp8266 {
         thingspeakUploaded = true
         return
     }
+    
+    //% subcategory="APEX Allways Free London jegyed50"
+    //% weight=29
+    //% blockGap=8
+    //% blockId=esp8266_upload_APEX
+    //% block="APEX Allways Free London jegyed50|Write API key %writeApiKey|Field 1 %field1||Field 2 %field2|Field 3 %field3|Field 4 %field4|Field 5 %field5|Field 6 %field6|Field 7 %field7|Field 8 %field8"
+    export function uploadAPEX(   writeApiKey: string,
+                                        field1: number,
+                                        field2: number = null,
+                                        field3: number = null,
+                                        field4: number = null,
+                                        field5: number = null,
+                                        field6: number = null,
+                                        field7: number = null,
+                                        field8: number = null  ) {
+
+        // Reset the upload successful flag.
+        thingspeakUploaded = false
+
+        // Make sure the WiFi is connected.
+        if (isWifiConnected() == false) return
+
+        // Connect to ThingSpeak. Return if failed.
+        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + "g6d9abcb7cf856d-jegyed50db21c.adb.uk-london-1.oraclecloudapps.com" + "\",443", "OK", 10000) == false) return
+
+        // Construct the data to send.
+        let data = "GET /ords/f?p=106:6::APPLICATION_PROCESS=LOG_DATA_01:::P6_FIELD1:200.1"
+        /*+ writeApiKey + "&field1=" + field1
+        if (field2 != null) data += "&field2=" + field2
+        if (field2 != null) data += "&field3=" + field3
+        if (field2 != null) data += "&field4=" + field4
+        if (field2 != null) data += "&field5=" + field5
+        if (field2 != null) data += "&field6=" + field6
+        if (field2 != null) data += "&field7=" + field7
+        if (field2 != null) data += "&field8=" + field8*/
+
+        // Send the data.
+        sendCommand("AT+CIPSEND=" + (data.length + 2))
+        sendCommand(data)
+        
+        // Return if "SEND OK" is not received.
+        if (getResponse("SEND OK", 1000) == "") return
+        
+        // Check the response from ThingSpeak.
+        let response = getResponse("+IPD", 1000)
+        if (response == "") return
+
+        // Trim the response to get the upload count.
+        response = response.slice(response.indexOf(":") + 1, response.indexOf("CLOSED"))
+        let uploadCount = parseInt(response)
+
+        // Return if upload count is 0.
+        if (uploadCount == 0) return
+
+        // Set the upload successful flag and return.
+        thingspeakUploaded = true
+        return
+    }
 }
