@@ -121,18 +121,11 @@ namespace esp8266 {
 
         // Connect to ThingSpeak. Return if failed.
        // GET https://api.thingspeak.com/update?api_key=ICPZTSAEIMBWJDTK&field1=300
-        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + "api.thingspeak.com/update" + "\",80", "OK", 10000) == false) return
+        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + "api.thingspeak.com" + "\",80", "OK", 10000) == false) return
 
         // Construct the data to send.
-        let data = "GET /ords/f?p=106:6::APPLICATION_PROCESS=LOG_DATA_01:::P6_FIELD1:200.1"
-        /*+ writeApiKey + "&field1=" + field1
-        if (field2 != null) data += "&field2=" + field2
-        if (field2 != null) data += "&field3=" + field3
-        if (field2 != null) data += "&field4=" + field4
-        if (field2 != null) data += "&field5=" + field5
-        if (field2 != null) data += "&field6=" + field6
-        if (field2 != null) data += "&field7=" + field7
-        if (field2 != null) data += "&field8=" + field8*/
+        let data = "GET /update?api_key=ICPZTSAEIMBWJDTK&field1=0"
+        
 
         // Send the data.
         sendCommand("AT+CIPSEND=" + (data.length + 2))
