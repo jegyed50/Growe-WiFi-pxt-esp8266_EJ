@@ -120,7 +120,7 @@ namespace esp8266 {
         if (isWifiConnected() == false) return
 
         // Connect to ThingSpeak. Return if failed.
-        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + "g6d9abcb7cf856d-jegyed50db21c.adb.uk-london-1.oraclecloudapps.com" + "\",80", "OK", 10000) == false) return
+        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + "g6d9abcb7cf856d-jegyed50db21c.adb.uk-london-1.oraclecloudapps.com" + "\",", "OK", 10000) == false) return
 
         // Construct the data to send.
         let data = "GET /ords/f?p=106:6::APPLICATION_PROCESS=LOG_DATA_01:::P6_FIELD1:200.1"
