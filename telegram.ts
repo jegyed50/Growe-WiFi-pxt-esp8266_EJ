@@ -85,11 +85,22 @@ namespace esp8266 {
         return
     }
  /** APEX ===================================================================================
+            /**
+     * Return true if the APEX message sent
+     */
+    //% subcategory="APEX"
+    //% weight=29
+    //% blockGap=8
+    //% blockId=APEXMessageSent
+    //% block="APEXMessageSent"
+    export function fAPEXMessageSent(): boolean {
+        return APEXMessageSent
+    }
     /**
      * Test the APEX Server Connection
      */
     //% subcategory="APEX"
-    //% weight=30
+    //% weight=28
     //% blockGap=8
     //% blockId=APEXServerConnectionTest
     //% block="APEXServerConnectionTest"
@@ -102,18 +113,8 @@ namespace esp8266 {
         return (sendCommand("AT+CIPSTART=\"SSL\",\"" + APEXServer + "\",443", "OK", 10000))
     }
 
-    APEXMessageSent
-        /**
-     * Return true if the APEX message sent
-     */
-    //% subcategory="APEX"
-    //% weight=30
-    //% blockGap=8
-    //% blockId=APEXMessageSent
-    //% block="APEXMessageSent"
-    export function fAPEXMessageSent(): boolean {
-        return APEXMessageSent
-    }
+    
+
     /*
      * Send to APEX Application process
      * Sample: https://g6d9abcb7cf856d-jegyed50db21c.adb.uk-london-1.oraclecloudapps.com/ords/f?p=106:6::APPLICATION_PROCESS=LOG_DATA_01:::P6_FIELD1:-99.9
@@ -121,7 +122,7 @@ namespace esp8266 {
      * @param chatId The chat ID we want to send message to.
      */
     //% subcategory="APEX"
-    //% weight=29
+    //% weight=27
     //% blockGap=8
     //% blockId=esp8266_send_APEX_message
     //% block="send message to APEX:Message %message"
