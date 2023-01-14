@@ -85,21 +85,34 @@ namespace esp8266 {
         return
     }
  /** APEX ===================================================================================
-     let APEXServerConnectionTestOK = false
-    let APEXMessageSent = false
-
-
-
     /**
-     * Return true if the APEX Server Connection Test is OK
+     * Test the APEX Server Connection
      */
     //% subcategory="APEX"
     //% weight=30
     //% blockGap=8
     //% blockId=esp8266_is_telegram_message_sent
-    //% block="Telegram message sent"
-    export function fAPEXServerConnectionTestOK(): boolean {
-        return APEXServerConnectionTestOK
+    //% block="APEXServerConnectionTest"
+    export function APEXServerConnectionTest(): boolean {
+        APEXServerConnectionTestOK = false
+        // Make sure the WiFi is connected.
+        if (isWifiConnected() == false) return
+
+        // Connect to APEX server (ORDS). Return if failed.
+        return (sendCommand("AT+CIPSTART=\"SSL\",\"" + APEXServer + "\",443", "OK", 10000))
+    }
+
+    APEXMessageSent
+        /**
+     * Return true if the APEX message sent
+     */
+    //% subcategory="APEX"
+    //% weight=30
+    //% blockGap=8
+    //% blockId=esp8266_is_telegram_message_sent
+    //% block="APEXMessageSent"
+    export function fAPEXMessageSent(): boolean {
+        return APEXMessageSent
     }
     /*
      * Send to APEX Application process
@@ -114,9 +127,9 @@ namespace esp8266 {
     //% block="send message to APEX:Message %message"
     export function SendMessageToAPEXApplicationProcesse(message: string) {
 
-        // Reset the upload successful flag.
+        // Reset the APEXMessageSent flag.
         APEXMessageSent = false
-
+        APEXServerConnectionTestOK = false
         // Make sure the WiFi is connected.
         if (isWifiConnected() == false) return
 
