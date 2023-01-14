@@ -91,7 +91,7 @@ namespace esp8266 {
     //% subcategory="APEX"
     //% weight=30
     //% blockGap=8
-    //% blockId=esp8266_is_telegram_message_sent
+    //% blockId=APEXServerConnectionTest
     //% block="APEXServerConnectionTest"
     export function APEXServerConnectionTest(): boolean {
         APEXServerConnectionTestOK = false
@@ -109,7 +109,7 @@ namespace esp8266 {
     //% subcategory="APEX"
     //% weight=30
     //% blockGap=8
-    //% blockId=esp8266_is_telegram_message_sent
+    //% blockId=APEXMessageSent
     //% block="APEXMessageSent"
     export function fAPEXMessageSent(): boolean {
         return APEXMessageSent
