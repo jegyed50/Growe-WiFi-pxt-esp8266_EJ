@@ -121,7 +121,7 @@ namespace esp8266 {
         if (isWifiConnected() == false) return
 
         // Connect to APEX server (ORDS). Return if failed.
-        APEXServerConnectionTestOK = (sendCommand("AT+CIPSTART=\"SSL\",\"" + APEXServer + "\",443", "OK", 10000)
+        APEXServerConnectionTestOK = (sendCommand("AT+CIPSTART=\"SSL\",\"" + APEXServer + "\",443", "OK", 10000))
         if (APEXServerConnectionTestOK == false) return
 
         // Construct the data to send.
