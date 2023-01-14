@@ -96,7 +96,7 @@ namespace esp8266 {
     export function APEXServerConnectionTest(): boolean {
         APEXServerConnectionTestOK = false
         // Make sure the WiFi is connected.
-        if (isWifiConnected() == false) return
+       // if (isWifiConnected() == false) return
 
         // Connect to APEX server (ORDS). Return if failed.
         return (sendCommand("AT+CIPSTART=\"SSL\",\"" + APEXServer + "\",443", "OK", 10000))
