@@ -101,7 +101,7 @@ namespace esp8266 {
     export function fAPEXServerConnectionTestOK(): boolean {
         return APEXServerConnectionTestOK
     }
-
+    /*
      * Send to APEX Application process
      * Sample: https://g6d9abcb7cf856d-jegyed50db21c.adb.uk-london-1.oraclecloudapps.com/ords/f?p=106:6::APPLICATION_PROCESS=LOG_DATA_01:::P6_FIELD1:-99.9
      * @param apiKey Telegram API Key.
